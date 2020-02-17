@@ -1,9 +1,13 @@
 export default arr => {
+  // 用数组来实现堆栈结构，pop,push
   let result = [];
-  let pre1, pre2;
-
-  arr.forEach(element => {
-    switch (element) {
+  // 上一轮的数据
+  let pre1;
+  // 上上轮的数据
+  let pre2;
+  // 对数组进行遍历，遍历的目的是处理得分
+  arr.forEach(item => {
+    switch (item) {
       case "C":
         if (result.length) {
           result.pop();
@@ -19,11 +23,10 @@ export default arr => {
         result.push(pre2, pre1, pre2 + pre1);
         break;
       default:
-        result.push(element * 1);
+        result.push(item * 1);
     }
   });
-
-  return result.reduce((total, num) => {
-    return total + num;
+  return result.reduce((a, b) => {
+    return parseInt(a) + parseInt(b);
   });
 };
